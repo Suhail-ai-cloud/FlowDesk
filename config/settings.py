@@ -199,13 +199,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-import os
-from django.contrib.auth import get_user_model
-
-if os.environ.get('CREATE_SUPERUSER') == 'True':
-    User = get_user_model()
-    if not User.objects.filter(email="admin@gmail.com").exists():
-        User.objects.create_superuser(
-            email="suhail@admin.com",
-            password="1234"
-        )
