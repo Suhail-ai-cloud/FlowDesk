@@ -106,6 +106,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #         'PORT': config('DB_PORT'),
 #     }
 # }
+
+
 DATABASES = {
     'default': dj_database_url.config(default=config('DATABASE_URL'))
 }

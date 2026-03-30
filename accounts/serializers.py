@@ -1,3 +1,4 @@
+# accounts\serializers.py
 from accounts.models import Company
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
@@ -60,9 +61,13 @@ class ChangePasswordSerializer(serializers.Serializer):
 class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
+
         data["user"] = {
             "id": self.user.id,
             "username": self.user.username,
             "email": self.user.email,
+            "company_name": self.user.company.name if self.user.company else None,
+            "role": self.user.role,
         }
+
         return data
